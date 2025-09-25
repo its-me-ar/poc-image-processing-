@@ -26,8 +26,6 @@ export default function CanvasImageLoader() {
   // Local background removal state
   const [isRemovingBgLocal, setIsRemovingBgLocal] = useState(false);
 
-  // kept for potential future use; full-screen canvas ignores fixed aspect
-
   // Load OpenCV.js only once and wait for WASM runtime initialization
   useEffect(() => {
     const markReady = () => setOpenCvReady(true);
