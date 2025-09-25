@@ -10,27 +10,6 @@ declare global {
   }
 }
 
-function maskToImageData(mask: any, width: number, height: number): ImageData {
-  const data = new Uint8ClampedArray(width * height * 4);
-
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const i = y * width + x;
-      // support mask as flat array or nested arrays
-      const value = Array.isArray(mask[i]) ? mask[i][0] : mask[i];
-      const alpha = Math.round((value ?? 0) * 255);
-
-      const j = i * 4;
-      data[j + 0] = 0; // R
-      data[j + 1] = 0; // G
-      data[j + 2] = 0; // B
-      data[j + 3] = alpha; // A
-    }
-  }
-
-  return new ImageData(data, width, height);
-}
-
 export default function CanvasImageLoader() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
