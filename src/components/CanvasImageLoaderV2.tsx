@@ -49,11 +49,13 @@ export default function CanvasImageLoader() {
     null
   );
   const [tokenizer, setTokenizer] = useState<SimpleTokenizer | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Load ONNX model and tokenizer
   useEffect(() => {
     async function loadModelAndTokenizer() {
       try {
+        setIsLoading(true);
         // Ensure ONNX Runtime knows where to load .wasm from. We copy the runtime .wasm into /ort
         try {
           // prefer explicit setting if available — use absolute URL so Vite dev server serves it correctly
@@ -119,8 +121,10 @@ export default function CanvasImageLoader() {
           },
         };
         setTokenizer(simpleTokenizer);
+        setIsLoading(false);
       } catch (err) {
         console.error("Failed to load ONNX model or tokenizer", err);
+        setIsLoading(false);
       }
     }
     loadModelAndTokenizer();
@@ -336,11 +340,17 @@ export default function CanvasImageLoader() {
           onChange={(e) => setCommand(e.target.value)}
         />
         <button
-          className="px-3 py-1 border rounded mb-3 w-full"
+          className="px-3 py-1 border rounded mb-3 w-full disabled:cursor-not-allowed disabled:opacity-60 hover:shadow"
           onClick={handleCommand}
+          disabled={!command || !onnxSession || isLoading}
         >
           Execute Command
         </button>
+        {
+          isLoading ? (
+            <div className="text-sm text-gray-600 mb-2">Loading model...</div>
+          ) : null
+        }
 
         {/* Image controls */}
         <div className="flex gap-2 mb-2">
