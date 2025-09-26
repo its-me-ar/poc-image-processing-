@@ -286,9 +286,6 @@ export default function CanvasImageLoader() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
     switch (intent.action) {
       case "draw_circle":
         ctx.fillStyle = intent.color || "red";
