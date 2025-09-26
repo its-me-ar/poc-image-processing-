@@ -26,3 +26,32 @@ dist-ssr
 .env.local
 .env.*.local
 ____index-html
+
+# Python / virtualenv
+venv/
+.venv/
+env/
+ENV/
+onnx_env/
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Model artifacts and exports
+intent_model/
+onnx_model/
+*.safetensors
+
+
+# Editor/session
+.history

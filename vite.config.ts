@@ -10,4 +10,17 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    watch: {
+      ignored: ['**/addons/**'],
+    },
+  },
+  optimizeDeps: {
+    exclude: ['addons'],
+  },
+  build: {
+    rollupOptions: {
+      external: (id: string) => id.startsWith('addons/') || id === 'addons',
+    },
+  },
 })

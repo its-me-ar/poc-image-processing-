@@ -1,0 +1,12 @@
+{
+  "train": [
+    {"text": "draw a red circle", "label": "draw_circle"},
+    {"text": "make a circle in blue", "label": "draw_circle"},
+    {"text": "brighten image by 20 percent", "label": "adjust_brightness"},
+    {"text": "increase brightness by 50%", "label": "adjust_brightness"}
+  ],
+  "validation": [
+    {"text": "draw green circle", "label": "draw_circle"},
+    {"text": "brighten image 10 percent", "label": "adjust_brightness"}
+  ]
+}

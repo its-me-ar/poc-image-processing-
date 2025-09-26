@@ -1,4 +1,6 @@
-import CanvasImageLoader from './components/CanvasImageLoader'
+import { lazy } from 'react'
+
+const CanvasImageLoader = lazy(() => import('./components/CanvasImageLoaderV2'))
 
 function App() {
 
